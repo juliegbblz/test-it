@@ -2,13 +2,11 @@ package com.example.testit.service;
 
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.verify;
 
 import java.util.Optional;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -54,6 +52,9 @@ class BookServiceTest {
         Book result = bookService.borrowBook(book.getId(),member.getId());
 
         assertTrue(result.getStatus()==Status.EMPRUNTE,"Livre bien emprunte");
+        assertTrue(result.getBorrower()==member);
+        //y a pas d'envoie de mail dans ce cas
+        //Mockito.verify(mail);
     }
 
 
